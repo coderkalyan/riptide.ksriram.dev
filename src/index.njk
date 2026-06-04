@@ -11,9 +11,10 @@ permalink: /
       Riptide
     </a>
     <nav class="links">
-      <a href="#features">Features</a>
-      <a href="#waves">Waveforms</a>
-      <a href="#grouping">Signals</a>
+      <a href="#waves">Clarity</a>
+      <a href="#scale">Scale</a>
+      <a href="#features">Query</a>
+      <a href="#handoff">Handoff</a>
       <a href="#">Docs</a>
     </nav>
     <span class="sp"></span>
@@ -63,18 +64,40 @@ permalink: /
   </div>
 </section>
 
-<!-- CLARITY (waveforms, first) -->
-<section class="section" id="waves" style="padding-top:40px;">
+<!-- METRICS BAND -->
+<section class="metrics">
+  <div class="wrap metrics-grid">
+    <div class="metric">
+      <div class="m-num">10M+</div>
+      <div class="m-lab">Transitions in a trace, with pan and zoom that stay <em>smooth</em>.</div>
+    </div>
+    <div class="metric">
+      <div class="m-num">60 fps</div>
+      <div class="m-lab">Held steady across the whole UI and the waveform viewport alike.</div>
+    </div>
+    <div class="metric">
+      <div class="m-num">WebGPU</div>
+      <div class="m-lab">Hardware-accelerated rendering, built on a modern graphics stack.</div>
+    </div>
+    <div class="metric">
+      <div class="m-num">Pixel-perfect</div>
+      <div class="m-lab">Crisp, anti-aliased edges and labels — sharp at any zoom or display scale.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CLARITY (waveforms) -->
+<section class="section" id="waves">
   <div class="wrap split">
     <div class="copy">
       <div class="sec-kicker">// CLARITY</div>
-      <h2>Silence the noise.</h2>
-      <p>Large traces are full of noise&nbsp;— invalid or disabled signals,&nbsp;duplicates. Riptide was designed to maximize clarity and contrast.&nbsp;The viewer clearly distinguishes adjacent signals, renders unknown and high impedance values as bold cross hatches, and mutes disabled values so you can focus on what matters.</p>
+      <h2>Read the signal, not the clutter.</h2>
+      <p>A real trace is mostly things you don't care about — gated logic, idle buses, duplicate strobes. Riptide is tuned for contrast: adjacent rows stay visually distinct, undefined and high-impedance bands are cross-hatched on sight, and signals with nothing to say are muted out of the way.</p>
       <ul class="feat-list">
-        <li><span class="pin" style="background:var(--clk)"></span><div><strong>Clock native grid</strong><span>The timeline and grid are clock synchronized by default.</span></div></li>
-        <li><span class="pin" style="background:var(--bus)"></span><div><strong>Typed bus &amp; enum rendering</strong><span>Bold, anti-aliased text rendering for primitives and enums.</span></div></li>
-        <li><span class="pin" style="background:var(--hot)"></span><div><strong>X / Z hatching</strong><span>Unknown and high-impedance values stand out on sight.</span></div></li>
-        <li><span class="pin" style="background:var(--muted)"></span><div><strong>Mute disabled signals</strong><span>Signals with nothing to say fade into the background.</span></div></li>
+        <li><span class="pin" style="background:var(--clk)"></span><div><strong>Clock-aware grid</strong><span>Riptide understands your actual clock, not just the file's timescale, so the ruler and grid fall on real cycle edges.</span></div></li>
+        <li><span class="pin" style="background:var(--bus)"></span><div><strong>Typed bus &amp; enum labels</strong><span>Buses and enums are decoded and shown as crisp, readable value pills.</span></div></li>
+        <li><span class="pin" style="background:var(--hot)"></span><div><strong>X / Z cross-hatching</strong><span>Unknown (X) and high-impedance (Z) values are hatched, not silently guessed.</span></div></li>
+        <li><span class="pin" style="background:var(--muted)"></span><div><strong>Muted idle signals</strong><span>Gated or quiet rows fade back so the active ones lead the eye.</span></div></li>
       </ul>
     </div>
     <div class="window plain" style="box-shadow:0 30px 70px -34px rgba(0,0,0,.75)">
@@ -83,32 +106,66 @@ permalink: /
   </div>
 </section>
 
-<!-- QUERY (sec-head left, vertical list right) -->
-<section class="section" id="features" style="padding-top:0;">
+<!-- SCALE / PERFORMANCE -->
+<section class="section band" id="scale">
   <div class="wrap split">
-    <ul class="feat-list">
-      <li><span class="pin" style="background:var(--bus)"></span><div><strong>Derived &amp; watched signals</strong><span>Build new signals from expressions — <span class="mono">in_valid &amp; out_valid</span> — and pin a live watch list that follows every step.</span></div></li>
-      <li><span class="pin" style="background:var(--warn)"></span><div><strong>Anomaly &amp; assertion flags</strong><span>Failed assertions, glitches, and out-of-range values get marked right on the timeline, so the problem finds you.</span></div></li>
-      <li><span class="pin" style="background:var(--clk)"></span><div><strong>Find similar events</strong><span>Select one handshake or transaction and jump to every place the pattern repeats — same shape, same bug.</span></div></li>
-    </ul>
+    <div class="perfviz" aria-hidden="true">
+      <div class="pv-head"><span>VIEWPORT</span><span class="pv-tag">only what's on screen</span></div>
+      <div class="pv-track">
+        <div class="pv-seg ghost"></div><div class="pv-seg ghost"></div>
+        <div class="pv-window">
+          <div class="pv-seg live"></div><div class="pv-seg live"></div><div class="pv-seg live"></div>
+        </div>
+        <div class="pv-seg ghost"></div><div class="pv-seg ghost"></div><div class="pv-seg ghost"></div>
+      </div>
+      <div class="pv-track">
+        <div class="pv-seg ghost s"></div><div class="pv-seg ghost s"></div>
+        <div class="pv-window">
+          <div class="pv-seg live s"></div><div class="pv-seg live s"></div>
+        </div>
+        <div class="pv-seg ghost s"></div><div class="pv-seg ghost s"></div><div class="pv-seg ghost s"></div>
+      </div>
+      <div class="pv-foot"><span class="pv-dim">10,000,000 transitions in the trace</span><span class="pv-hot">~40 on screen, drawn instantly</span></div>
+    </div>
     <div class="copy">
-      <div class="sec-kicker">// QUERY THE TRACE</div>
-      <h2>Ask your waveform a question.</h2>
-      <p>A trace shouldn't just sit there. Compose derived signals, keep a live watch on what matters, and let Riptide surface the glitches, failed asserts, and look-alike events you'd otherwise scroll right past.</p>
+      <div class="sec-kicker">// SCALE</div>
+      <h2>Big traces stay smooth.</h2>
+      <p>Most viewers slow down as the trace grows. Riptide doesn't. It only works on the stretch of waveform you're actually looking at, so panning and zooming a ten-million-transition trace feels exactly like a tiny one — no lag creeping in as your runs get longer.</p>
+      <ul class="feat-list">
+        <li><span class="pin" style="background:var(--accent)"></span><div><strong>Smooth at any size</strong><span>Pan and zoom stay fluid whether the trace is kilobytes or gigabytes.</span></div></li>
+        <li><span class="pin" style="background:var(--clk)"></span><div><strong>Hardware-accelerated</strong><span>The whole canvas is drawn on your graphics card, built on modern WebGPU.</span></div></li>
+        <li><span class="pin" style="background:var(--bus)"></span><div><strong>Swap traces in place</strong><span>Open a fresh run and the view updates where it stands — no reload, no flash.</span></div></li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- CONTROL YOUR SIMULATOR -->
-<section class="section" id="control" style="padding-top:0;">
+<!-- QUERY -->
+<section class="section" id="features">
+  <div class="wrap split">
+    <ul class="feat-list">
+      <li><span class="pin" style="background:var(--bus)"></span><div><strong>Derived &amp; watched signals</strong><span>Build new rows from expressions — <span class="mono">in_valid &amp; out_valid</span> — and pin a watch list that follows every step.</span></div></li>
+      <li><span class="pin" style="background:var(--warn)"></span><div><strong>Anomaly &amp; assertion flags</strong><span>Failed asserts, glitches and out-of-range values get marked on the timeline, so the problem finds you.</span></div></li>
+      <li><span class="pin" style="background:var(--clk)"></span><div><strong>Find similar events</strong><span>Select one handshake and jump to every place the same shape repeats.</span></div></li>
+    </ul>
+    <div class="copy">
+      <div class="sec-kicker">// QUERY</div>
+      <h2>Ask the waveform a question.</h2>
+      <p>A trace shouldn't just sit there. Compose derived signals, keep a live watch on what matters, and let Riptide surface the glitches, failed asserts and look-alike events you'd otherwise scroll right past.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTROL -->
+<section class="section band" id="control">
   <div class="wrap split">
     <div class="copy">
       <div class="sec-kicker">// CONTROL</div>
-      <h2>One interface for every simulator.</h2>
-      <p>In addition to recorded waveforms, Riptide can connect directly to your simulator to drive live simulation. It leans on <a class="ln" href="https://github.com/olofk/edalize">Edalize</a> to speak TCL to whatever backend you run, so you work from one clean, unified surface instead of wrestling a different clunky UI for every tool. Same commands, any simulator under the hood.</p>
+      <h2>One surface for every simulator.</h2>
+      <p>Beyond recorded waveforms, Riptide drives live simulation. It leans on <a class="ln" href="https://github.com/olofk/edalize">Edalize</a> to speak TCL to whatever backend you run — so the same run, step and poke work everywhere, instead of a different clunky UI per tool.</p>
       <ul class="feat-list">
         <li><span class="pin" style="background:var(--accent)"></span><div><strong>Uniform control surface</strong><span>run · step · restart · poke — identical across backends.</span></div></li>
-        <li><span class="pin" style="background:var(--bus)"></span><div><strong>Powered by Edalize</strong><span>Battle-tested TCL abstraction across the EDA tool zoo.</span></div></li>
+        <li><span class="pin" style="background:var(--bus)"></span><div><strong>Powered by Edalize</strong><span>A battle-tested TCL abstraction over the EDA tool zoo.</span></div></li>
         <li><span class="pin" style="background:var(--ok)"></span><div><strong>No vendor lock-in</strong><span>Swap the simulator under your testbench, keep your flow.</span></div></li>
       </ul>
     </div>
@@ -126,30 +183,87 @@ permalink: /
   </div>
 </section>
 
-<!-- GROUPING & CORRELATION -->
-<section class="section" id="grouping" style="padding-top:0;">
+<!-- GROUPING -->
+<section class="section" id="grouping">
   <div class="wrap split">
-    <div class="window plain">
+    <div class="window plain as-card">
       <div class="aslist">
         <div class="as-head">NAME<span class="vh">VALUE</span></div>
-        <div class="as-grp"><span class="chev">▾</span> handshake_if <span class="gtag">group · coupled</span></div>
-        <div class="as-row nested"><span class="pin" style="background:var(--clk)"></span><span class="ic" style="color:var(--clk)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5V12l3 1.8"></path></svg></span><span class="nm">clk</span><span class="val">1</span></div>
-        <div class="as-row nested"><span class="pin" style="background:var(--ok)"></span><span class="ic" style="color:var(--ok)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="m8.4 12.3 2.4 2.4 4.7-5.4"></path></svg></span><span class="nm">in_valid</span><span class="val">1</span></div>
-        <div class="as-row nested"><span class="pin" style="background:var(--pink)"></span><span class="ic"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2.5-7 4 14 2.5-7H21"></path></svg></span><span class="nm">in_data[7:0]</span><span class="val">0xA3</span></div>
-        <div class="as-row"><span class="pin" style="background:var(--bus)"></span><span class="ic"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2.5-7 4 14 2.5-7H21"></path></svg></span><span class="nm">state[1:0]</span><span class="val">BUSY</span></div>
-        <div class="as-row"><span class="pin" style="background:var(--warn)"></span><span class="ic"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2.5-7 4 14 2.5-7H21"></path></svg></span><span class="nm">fifo_level[3:0]</span><span class="val">2</span></div>
-        <div class="as-row"><span class="pin" style="background:#4FD2BD"></span><span class="ic"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2.5-7 4 14 2.5-7H21"></path></svg></span><span class="nm">dbus[7:0]</span><span class="corr">↔ in_data</span><span class="val">0xF0</span></div>
-        <div class="as-row"><span class="pin" style="background:var(--pink)"></span><span class="ic" style="color:var(--pink)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5c2.2-2.6 4.4 1 6.5-1s4.3-3.6 6.5-1"></path><path d="M3 15c2.2-2.6 4.4 1 6.5-1s4.3-3.6 6.5-1"></path></svg></span><span class="nm">busy</span><span class="val">1</span></div>
+
+        <!-- group: clock domain -->
+        <div class="as-tree" style="--grp:var(--clk)">
+          <div class="as-grp"><span class="chev">▾</span><span class="gdot"></span>clk_domain<span class="gtag">group</span></div>
+          <div class="as-row child">
+            <span class="ic" style="color:var(--clk)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5V12l3 1.8"></path></svg></span>
+            <span class="nm">clk</span><span class="val">1</span>
+          </div>
+          <div class="as-row child">
+            <span class="ic" style="color:var(--hot)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5v7"></path><path d="M6.7 6.4a8 8 0 1 0 10.6 0"></path></svg></span>
+            <span class="nm">rst_n</span><span class="val">0</span>
+          </div>
+        </div>
+
+        <!-- group: handshake -->
+        <div class="as-tree" style="--grp:var(--accent)">
+          <div class="as-grp"><span class="chev">▾</span><span class="gdot"></span>handshake_if<span class="gtag">coupled</span></div>
+          <div class="as-row child">
+            <span class="ic" style="color:var(--ok)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="m8.4 12.3 2.4 2.4 4.7-5.4"></path></svg></span>
+            <span class="nm">in_valid</span><span class="val">1</span>
+          </div>
+          <div class="as-row child">
+            <span class="ic" style="color:var(--text-2)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="m8.4 12.3 2.4 2.4 4.7-5.4"></path></svg></span>
+            <span class="nm">in_ready</span><span class="val">0</span>
+          </div>
+          <div class="as-row child">
+            <span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2.5-7 4 14 2.5-7H21"></path></svg></span>
+            <span class="nm">in_data[7:0]</span><span class="vpill" style="--pc:var(--pink)">A3</span>
+          </div>
+        </div>
+
+        <!-- ungrouped -->
+        <div class="as-row"><span class="pin" style="background:var(--bus)"></span><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h6l2 8 2-12h4"></path></svg></span><span class="nm">state[1:0]</span><span class="vpill" style="--pc:var(--bus)">BUSY</span></div>
+        <div class="as-row"><span class="pin" style="background:var(--warn)"></span><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2.5-7 4 14 2.5-7H21"></path></svg></span><span class="nm">fifo_level[3:0]</span><span class="val">2</span></div>
+        <div class="as-row"><span class="pin" style="background:#4FD2BD"></span><span class="ic" style="color:#4FD2BD"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5c2.2-2.6 4.4 1 6.5-1s4.3-3.6 6.5-1"></path><path d="M3 15c2.2-2.6 4.4 1 6.5-1s4.3-3.6 6.5-1"></path></svg></span><span class="nm">stall</span><span class="dtag">derived</span><span class="val">1</span></div>
       </div>
     </div>
     <div class="copy">
       <div class="sec-kicker">// ORGANIZATION</div>
-      <h2>Organize signals logically.</h2>
-      <p>Group a handshake, bus, or valid/data pair together and visualize, move, or collapse them together. Riptide can also auto-detect and assign colors to groups from the signal hierarchy, reducing manual effort.</p>
+      <h2>Group signals the way you think.</h2>
+      <p>Bundle a handshake, a bus, or a valid/data pair into a group, then move, color or collapse them as one. Riptide can read the hierarchy and naming patterns to assign group colors automatically, so you spend less time housekeeping.</p>
       <ul class="feat-list">
-        <li><span class="pin" style="background:var(--clk)"></span><div><strong>Logical groups</strong><span>Group related signals, color them, and collapse them together.</span></div></li>
-        <li><span class="pin" style="background:#4FD2BD"></span><div><strong>Automatic group detection</strong><span>Riptide can use the signal hierarchy and naming patterns to auto-detect groups, saving you time.</span></div></li>
+        <li><span class="pin" style="background:var(--clk)"></span><div><strong>Logical groups</strong><span>Group related signals, color them, collapse them together.</span></div></li>
+        <li><span class="pin" style="background:#4FD2BD"></span><div><strong>Auto group detection</strong><span>Hierarchy and name patterns seed groups and colors for you.</span></div></li>
       </ul>
+    </div>
+  </div>
+</section>
+
+<!-- HANDOFF / SIDECAR -->
+<section class="section band" id="handoff">
+  <div class="wrap split">
+    <div class="copy">
+      <div class="sec-kicker">// HANDOFF</div>
+      <h2>Hand over the bug, not the trace.</h2>
+      <p>Riptide keeps viewer state in a small JSON <span class="mono">sidecar</span> beside the trace — which signals, what order, colors, cursor, markers, zoom. It's tied to signal names, so the same sidecar opens against any run of the design. Drop a VCD and a sidecar from a failing CI job into review: the reviewer double-clicks and lands on the failure window, the right signals already up.</p>
+      <ul class="feat-list">
+        <li><span class="pin" style="background:var(--accent)"></span><div><strong>Portable across runs</strong><span>Tied to signal names, so the same view opens against any run of the design.</span></div></li>
+        <li><span class="pin" style="background:var(--bus)"></span><div><strong>Scriptable for CI</strong><span>A script writes the <span class="mono">view</span> section; Riptide fills the rest in.</span></div></li>
+        <li><span class="pin" style="background:var(--ok)"></span><div><strong>Autosaved, no projects</strong><span>Every change is written back — delete the file to open fresh.</span></div></li>
+      </ul>
+    </div>
+    <div class="codecard">
+      <div class="top"><span class="dot"></span> keysched.sidecar.json</div>
+      <pre><span class="c-key">"view"</span>: {
+  <span class="c-key">"time"</span>: { <span class="c-key">"start"</span>: <span class="c-num">88</span>, <span class="c-key">"end"</span>: <span class="c-num">132</span>, <span class="c-key">"cursor"</span>: <span class="c-num">104.5</span> },
+  <span class="c-com">// keyed by path — opens against any run</span>
+  <span class="c-key">"signals"</span>: [
+    { <span class="c-key">"path"</span>: <span class="c-clk">"top.dec.in_valid"</span> },
+    { <span class="c-key">"path"</span>: <span class="c-clk">"top.dec.out_data"</span>, <span class="c-key">"radix"</span>: <span class="c-clk">"hex"</span> }
+  ],
+  <span class="c-key">"markers"</span>: [
+    { <span class="c-key">"t"</span>: <span class="c-num">104</span>, <span class="c-key">"name"</span>: <span class="c-ok">"assert failed"</span> }
+  ]
+}</pre>
     </div>
   </div>
 </section>
@@ -162,8 +276,8 @@ permalink: /
     </g>
   </svg>
   <div class="wrap">
-    <h2>Find the bug on the first run.</h2>
-    <p>Stop scrubbing endless traces by hand. Set a breakpoint, hit run, and let Riptide take you straight to the edge that broke.</p>
+    <h2>Land on the bug, first run.</h2>
+    <p>Stop scrubbing traces by hand. Open it where it broke, with the right signals already on screen.</p>
     <div class="cta-row">
       <a class="btn primary lg" href="#">Download for Linux</a>
       <a class="btn lg" href="{{ site.repo }}">View on GitHub</a>
