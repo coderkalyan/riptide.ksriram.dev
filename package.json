@@ -1,0 +1,16 @@
+{
+  "name": "riptide.ksriram.dev",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "eleventy --serve",
+    "build": "eleventy",
+    "screenshot": "node scripts/screenshot.mjs",
+    "clean": "rm -rf _site"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "playwright": "^1.60.0"
+  }
+}
