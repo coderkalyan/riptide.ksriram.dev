@@ -39,6 +39,7 @@ permalink: /
   <div class="wrap">
     <div class="hero-top">
       <div class="hero-copy">
+        <div class="eyebrow"><span class="dot"></span> v0.1 · alpha</div>
         <h1>Debug your RTL <span class="em">without the headache</span>.</h1>
         <p class="lede">Riptide is a waveform debugger for the 21st century. Designed from the ground up to give you the tools you need to find bugs quickly while minimizing visual noise. GPU accelerated rendering, advanced querying, derived signal expressions, and direct simulator control.</p>
         <div class="cta-row">
@@ -48,7 +49,7 @@ permalink: /
       </div>
       <div class="fit">
         <div class="fit-label">DESIGNED TO FIT YOUR FLOW</div>
-        <div class="fit-row"><span class="k">File formats</span><span class="vv">VCD, FST<span class="soon-grp">, GHW<span class="ast"> *</span></span></span></div>
+        <div class="fit-row"><span class="k">File formats</span><span class="vv">VCD<span class="soon-grp">, FST, WLF, GHW<span class="ast"> *</span></span></span></div>
         <div class="fit-row"><span class="k">Simulators</span><span class="vv">Verilator, Icarus<span class="soon-grp">, GHDL, Questa, Vivado<span class="ast"> *</span></span></span></div>
         <div class="fit-row"><span class="k">Frameworks</span><span class="vv dim">cocotb, UVM, SVUnit<span class="ast"> *</span></span></div>
         <div class="fit-row"><span class="k">Pipelines</span><span class="vv dim">Make, CMake, CI artifacts<span class="ast"> *</span></span></div>
@@ -144,7 +145,7 @@ permalink: /
 <section class="section" id="features">
   <div class="wrap split">
     <ul class="feat-list">
-      <li><span class="pin" style="background:var(--bus)"></span><div><strong>Derived &amp; watched signals</strong><span>Build new rows from expressions — <span class="mono">in_valid &amp; out_valid</span> — and pin a watch list that follows every step.</span></div></li>
+      <li><span class="pin" style="background:var(--bus)"></span><div><strong>Derived &amp; watched signals<span class="ast"> *</span></strong><span>Build new rows from expressions — <span class="mono">in_valid &amp; out_valid</span> — and pin a watch list that follows every step.</span></div></li>
       <li><span class="pin" style="background:var(--warn)"></span><div><strong>Anomaly &amp; assertion flags</strong><span>Failed asserts, glitches and out-of-range values get marked on the timeline, so the problem finds you.</span></div></li>
       <li><span class="pin" style="background:var(--clk)"></span><div><strong>Find similar events</strong><span>Select one handshake and jump to every place the same shape repeats.</span></div></li>
     </ul>
@@ -152,6 +153,7 @@ permalink: /
       <div class="sec-kicker">// QUERY</div>
       <h2>Ask the waveform a question.</h2>
       <p>A trace shouldn't just sit there. Compose derived signals, keep a live watch on what matters, and let Riptide surface the glitches, failed asserts and look-alike events you'd otherwise scroll right past.</p>
+      <p class="soon-foot"><span class="ast">*</span> coming soon</p>
     </div>
   </div>
 </section>
@@ -161,13 +163,14 @@ permalink: /
   <div class="wrap split">
     <div class="copy">
       <div class="sec-kicker">// CONTROL</div>
-      <h2>One surface for every simulator.</h2>
+      <h2>One surface for every simulator.<span class="ast"> *</span></h2>
       <p>Beyond recorded waveforms, Riptide drives live simulation. It leans on <a class="ln" href="https://github.com/olofk/edalize">Edalize</a> to speak TCL to whatever backend you run — so the same run, step and poke work everywhere, instead of a different clunky UI per tool.</p>
       <ul class="feat-list">
         <li><span class="pin" style="background:var(--accent)"></span><div><strong>Uniform control surface</strong><span>run · step · restart · poke — identical across backends.</span></div></li>
         <li><span class="pin" style="background:var(--bus)"></span><div><strong>Powered by Edalize</strong><span>A battle-tested TCL abstraction over the EDA tool zoo.</span></div></li>
         <li><span class="pin" style="background:var(--ok)"></span><div><strong>No vendor lock-in</strong><span>Swap the simulator under your testbench, keep your flow.</span></div></li>
       </ul>
+      <p class="soon-foot"><span class="ast">*</span> coming soon</p>
     </div>
     <div class="mock">
       <div class="body">
