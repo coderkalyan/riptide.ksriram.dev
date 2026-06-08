@@ -10,16 +10,12 @@ permalink: /
       <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 14 L6 14 L6 7 L11 7 L11 17 L16 17 L16 11 L22 11"></path></svg>
       Riptide
     </a>
-    <nav class="links">
-      <a href="#waves">Clarity</a>
-      <a href="#scale">Scale</a>
-      <a href="#features">Query</a>
-      <a href="#handoff">Handoff</a>
-      <a href="#">Docs</a>
-    </nav>
+    {# <nav class="links">
+      <a class="disabled" aria-disabled="true" title="Coming soon">Docs</a>
+    </nav> #}
     <span class="sp"></span>
-    <a class="ghost" href="#">Changelog</a>
-    <a class="btn primary" href="{{ site.repo }}">Download</a>
+    {# <a class="ghost disabled" aria-disabled="true" title="Coming soon">Changelog</a> #}
+    <a class="btn primary" href="https://github.com/coderkalyan/riptide/releases" target="_blank" rel="noopener">Download</a>
   </div>
 </header>
 
@@ -41,10 +37,10 @@ permalink: /
       <div class="hero-copy">
         <div class="eyebrow"><span class="dot"></span> v0.1 · alpha</div>
         <h1>Debug your RTL <span class="em">without the headache</span>.</h1>
-        <p class="lede">Riptide is a waveform debugger for the 21st century. Designed from the ground up to give you the tools you need to find bugs quickly while minimizing visual noise. GPU accelerated rendering, advanced querying, derived signal expressions, and direct simulator control.</p>
+        <p class="lede"><b>Stop staring at green waves.</b> Riptide is a waveform debugger for the 21st century, designed from the ground up to give you the tools you need to find bugs quickly while minimizing visual noise. GPU accelerated rendering, querying, derived signal expressions, and direct simulator control.</p>
         <div class="cta-row">
-          <a class="btn primary lg" href="#">Download for Linux</a>
-          <a class="btn lg" href="#">Read the docs</a>
+          <a class="btn primary lg" href="https://github.com/coderkalyan/riptide/releases" target="_blank" rel="noopener">Download for Linux</a>
+          <a class="btn lg" href="#metrics">Why Riptide? <span class="dn">↓</span></a>
         </div>
       </div>
       <div class="fit">
@@ -52,7 +48,7 @@ permalink: /
         <div class="fit-row"><span class="k">File formats</span><span class="vv">VCD<span class="soon-grp">, FST, WLF, GHW<span class="ast"> *</span></span></span></div>
         <div class="fit-row"><span class="k">Simulators</span><span class="vv">Verilator, Icarus<span class="soon-grp">, GHDL, Questa, Vivado<span class="ast"> *</span></span></span></div>
         <div class="fit-row"><span class="k">Frameworks</span><span class="vv dim">cocotb, UVM, SVUnit<span class="ast"> *</span></span></div>
-        <div class="fit-row"><span class="k">Pipelines</span><span class="vv dim">Make, CMake, CI artifacts<span class="ast"> *</span></span></div>
+        <div class="fit-row"><span class="k">Platforms</span><span class="vv">Linux<span class="soon-grp">, macOS, Windows<span class="ast"> *</span></span></span></div>
         <div class="fit-key"><span class="ast"> *</span> coming soon</div>
       </div>
     </div>
@@ -66,7 +62,7 @@ permalink: /
 </section>
 
 <!-- METRICS BAND -->
-<section class="metrics">
+<section class="metrics" id="metrics">
   <div class="wrap metrics-grid">
     <div class="metric">
       <div class="m-num">10M+</div>
@@ -93,12 +89,11 @@ permalink: /
     <div class="copy">
       <div class="sec-kicker">// CLARITY</div>
       <h2>Read the signal, not the clutter.</h2>
-      <p>A real trace is mostly things you don't care about — gated logic, idle buses, duplicate strobes. Riptide is tuned for contrast: adjacent rows stay visually distinct, undefined and high-impedance bands are cross-hatched on sight, and signals with nothing to say are muted out of the way.</p>
+      <p>A real trace is mostly things you don't care about — gated logic, idle buses, duplicate strobes. Riptide is tuned for contrast: adjacent rows stay visually distinct, and signals with nothing to say are muted out of the way.</p>
       <ul class="feat-list">
-        <li><span class="pin" style="background:var(--clk)"></span><div><strong>Clock-aware grid</strong><span>Riptide understands your actual clock, not just the file's timescale, so the ruler and grid fall on real cycle edges.</span></div></li>
-        <li><span class="pin" style="background:var(--bus)"></span><div><strong>Typed bus &amp; enum labels</strong><span>Buses and enums are decoded and shown as crisp, readable value pills.</span></div></li>
-        <li><span class="pin" style="background:var(--hot)"></span><div><strong>X / Z cross-hatching</strong><span>Unknown (X) and high-impedance (Z) values are hatched, not silently guessed.</span></div></li>
-        <li><span class="pin" style="background:var(--muted)"></span><div><strong>Muted idle signals</strong><span>Gated or quiet rows fade back so the active ones lead the eye.</span></div></li>
+        <li><span class="pin" style="background:var(--clk)"></span><div><strong>Clock-aware grid</strong><span>Riptide's timeline understands your design's clock, letting you line up and navigate clock cycles, not nanoseconds.</span></div></li>
+        <li><span class="pin" style="background:var(--bus)"></span><div><strong>Typed bus &amp; enum labels</strong><span>Clear, easy to read value rendering with different format options. Assign enum values, even if your waveform data doesn't include it. Unknown (X) and high-impedance (Z) values are visually distinctive.</span></div></li>
+        <li><span class="pin" style="background:var(--muted)"></span><div><strong>Signal muting</strong><span>Inactive or disabled rows fade back so the real data leads the eye.</span></div></li>
       </ul>
     </div>
     <div class="window plain" style="box-shadow:0 30px 70px -34px rgba(0,0,0,.75)">
@@ -280,9 +275,9 @@ permalink: /
   </svg>
   <div class="wrap">
     <h2>Land on the bug, first run.</h2>
-    <p>Stop scrubbing traces by hand. Open it where it broke, with the right signals already on screen.</p>
+    <p>Stop staring endlessly at green waves. Open it where it broke, with the right signals already on screen.</p>
     <div class="cta-row">
-      <a class="btn primary lg" href="#">Download for Linux</a>
+      <a class="btn primary lg" href="https://github.com/coderkalyan/riptide/releases" target="_blank" rel="noopener">Download for Linux</a>
       <a class="btn lg" href="{{ site.repo }}">View on GitHub</a>
     </div>
   </div>
@@ -294,7 +289,6 @@ permalink: /
       <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;"><path d="M2 14 L6 14 L6 7 L11 7 L11 17 L16 17 L16 11 L22 11"></path></svg>
       Riptide
     </a>
-    <span class="meta">Verilator 5.0 · built for RTL engineers</span>
     <span class="sp"></span>
     <div class="links">
       <a href="#">Docs</a>
