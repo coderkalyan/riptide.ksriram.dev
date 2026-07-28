@@ -84,9 +84,10 @@ function renderButtons(release, build) {
 
 function renderMeta(release, build) {
   if (!release) return;
+  // No detected build (mobile, unknown OS): the tag alone, since the adjacent
+  // "all platforms" link already says where the rest live.
   const bits = [release.tag];
-  if (build) bits.push(build.detail === build.label ? build.detail : `${build.label} · ${build.detail}`, build.size);
-  else bits.push("Linux · macOS · Windows");
+  if (build) bits.push(build.detail === build.label ? build.detail : `${build.label} · ${build.detail}`);
   const text = bits.filter(Boolean).join(" · ");
   for (const el of document.querySelectorAll("[data-dl-meta]")) el.textContent = text;
   for (const el of document.querySelectorAll("[data-dl-version]")) el.textContent = release.tag;
