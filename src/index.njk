@@ -15,7 +15,7 @@ permalink: /
     </nav> #}
     <span class="sp"></span>
     {# <a class="ghost disabled" aria-disabled="true" title="Coming soon">Changelog</a> #}
-    <a class="btn primary" href="https://github.com/coderkalyan/riptide/releases" target="_blank" rel="noopener">Download</a>
+    <a class="btn primary" data-dl="short" href="{{ release.releasesUrl }}" target="_blank" rel="noopener">Download</a>
   </div>
 </header>
 
@@ -35,20 +35,21 @@ permalink: /
   <div class="wrap">
     <div class="hero-top">
       <div class="hero-copy">
-        <div class="eyebrow"><span class="dot"></span> v0.1 · alpha</div>
+        <div class="eyebrow"><span class="dot"></span> <span data-dl-version>{{ release.tag }}</span>{% if release.prerelease %} · pre-release{% endif %}</div>
         <h1>Debug your RTL <span class="em">without the headache</span>.</h1>
-        <p class="lede"><b>Stop staring at green waves.</b> Riptide is a waveform debugger for the 21st century, designed from the ground up to give you the tools you need to find bugs quickly while minimizing visual noise. GPU accelerated rendering, querying, derived signal expressions, and direct simulator control.</p>
+        <p class="lede"><b>Stop staring at green waves.</b> Riptide is a waveform debugger for the 21st century, designed from the ground up to give you the tools you need to find bugs quickly while minimizing visual noise. GPU-accelerated rendering, a clock-aware timeline, typed bus and enum decoding, and a portable view you can hand straight to a reviewer.</p>
         <div class="cta-row">
-          <a class="btn primary lg" href="https://github.com/coderkalyan/riptide/releases" target="_blank" rel="noopener">Download for Linux</a>
+          <a class="btn primary lg" data-dl href="{{ release.releasesUrl }}" target="_blank" rel="noopener">Download</a>
           <a class="btn lg" href="#metrics">Why Riptide? <span class="dn">↓</span></a>
         </div>
+        <p class="cta-note dl-note"><span data-dl-meta>{{ release.tag }} · Linux · macOS · Windows</span> — <a class="ln" href="#download">every build</a></p>
       </div>
       <div class="fit">
         <div class="fit-label">DESIGNED TO FIT YOUR FLOW</div>
         <div class="fit-row"><span class="k">File formats</span><span class="vv">VCD<span class="soon-grp">, FST, WLF, GHW<span class="ast"> *</span></span></span></div>
-        <div class="fit-row"><span class="k">Simulators</span><span class="vv">Verilator, Icarus<span class="soon-grp">, GHDL, Questa, Vivado<span class="ast"> *</span></span></span></div>
+        <div class="fit-row"><span class="k">Simulator dumps</span><span class="vv">Verilator, Icarus, xsim<span class="soon-grp">, live control<span class="ast"> *</span></span></span></div>
         <div class="fit-row"><span class="k">Frameworks</span><span class="vv dim">cocotb, UVM, SVUnit<span class="ast"> *</span></span></div>
-        <div class="fit-row"><span class="k">Platforms</span><span class="vv">Linux<span class="soon-grp">, macOS, Windows<span class="ast"> *</span></span></span></div>
+        <div class="fit-row"><span class="k">Platforms</span><span class="vv">Linux, macOS, Windows</span></div>
         <div class="fit-key"><span class="ast"> *</span> coming soon</div>
       </div>
     </div>
@@ -141,13 +142,13 @@ permalink: /
   <div class="wrap split">
     <ul class="feat-list">
       <li><span class="pin" style="background:var(--bus)"></span><div><strong>Derived &amp; watched signals<span class="ast"> *</span></strong><span>Build new rows from expressions — <span class="mono">in_valid &amp; out_valid</span> — and pin a watch list that follows every step.</span></div></li>
-      <li><span class="pin" style="background:var(--warn)"></span><div><strong>Anomaly &amp; assertion flags</strong><span>Failed asserts, glitches and out-of-range values get marked on the timeline, so the problem finds you.</span></div></li>
-      <li><span class="pin" style="background:var(--clk)"></span><div><strong>Find similar events</strong><span>Select one handshake and jump to every place the same shape repeats.</span></div></li>
+      <li><span class="pin" style="background:var(--warn)"></span><div><strong>Anomaly &amp; assertion flags<span class="ast"> *</span></strong><span>Failed asserts, glitches and out-of-range values get marked on the timeline, so the problem finds you.</span></div></li>
+      <li><span class="pin" style="background:var(--clk)"></span><div><strong>Find similar events<span class="ast"> *</span></strong><span>Select one handshake and jump to every place the same shape repeats.</span></div></li>
     </ul>
     <div class="copy">
       <div class="sec-kicker">// QUERY</div>
-      <h2>Ask the waveform a question.</h2>
-      <p>A trace shouldn't just sit there. Compose derived signals, keep a live watch on what matters, and let Riptide surface the glitches, failed asserts and look-alike events you'd otherwise scroll right past.</p>
+      <h2>Ask the waveform a question.<span class="ast"> *</span></h2>
+      <p>A trace shouldn't just sit there. Today Riptide gives you markers you can drop, name and step between; next it will compose derived signals, keep a live watch on what matters, and surface the glitches, failed asserts and look-alike events you'd otherwise scroll right past.</p>
       <p class="soon-foot"><span class="ast">*</span> coming soon</p>
     </div>
   </div>
@@ -188,50 +189,34 @@ permalink: /
       <div class="aslist">
         <div class="as-head">NAME<span class="vh">VALUE</span></div>
 
-        <!-- group: clock domain -->
-        <div class="as-tree" style="--grp:var(--clk)">
-          <div class="as-grp"><span class="chev">▾</span><span class="gdot"></span>clk_domain<span class="gtag">group</span></div>
-          <div class="as-row child">
-            <span class="ic" style="color:var(--clk)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5V12l3 1.8"></path></svg></span>
-            <span class="nm">clk</span><span class="val">1</span>
-          </div>
-          <div class="as-row child">
-            <span class="ic" style="color:var(--hot)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5v7"></path><path d="M6.7 6.4a8 8 0 1 0 10.6 0"></path></svg></span>
-            <span class="nm">rst_n</span><span class="val">0</span>
-          </div>
-        </div>
+        <div class="as-row"><span class="pin" style="background:var(--clk)"></span><span class="ic" style="color:var(--clk)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5V12l3 1.8"></path></svg></span><span class="nm">clk</span><span class="dtag" style="--tc:var(--clk)">clock</span><span class="val">1</span></div>
+        <div class="as-row"><span class="pin" style="background:var(--hot)"></span><span class="ic" style="color:var(--hot)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5v7"></path><path d="M6.7 6.4a8 8 0 1 0 10.6 0"></path></svg></span><span class="nm">rst_n</span><span class="val">0</span></div>
 
-        <!-- group: handshake -->
-        <div class="as-tree" style="--grp:var(--accent)">
-          <div class="as-grp"><span class="chev">▾</span><span class="gdot"></span>handshake_if<span class="gtag">coupled</span></div>
-          <div class="as-row child">
-            <span class="ic" style="color:var(--ok)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="m8.4 12.3 2.4 2.4 4.7-5.4"></path></svg></span>
-            <span class="nm">in_valid</span><span class="val">1</span>
-          </div>
-          <div class="as-row child">
-            <span class="ic" style="color:var(--text-2)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="m8.4 12.3 2.4 2.4 4.7-5.4"></path></svg></span>
-            <span class="nm">in_ready</span><span class="val">0</span>
-          </div>
-          <div class="as-row child">
-            <span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2.5-7 4 14 2.5-7H21"></path></svg></span>
-            <span class="nm">in_data[7:0]</span><span class="vpill" style="--pc:var(--pink)">A3</span>
-          </div>
-        </div>
+        <!-- divider: a plain separator you drop between blocks -->
+        <div class="as-div"></div>
 
-        <!-- ungrouped -->
+        <div class="as-row"><span class="pin" style="background:var(--ok)"></span><span class="ic" style="color:var(--ok)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="m8.4 12.3 2.4 2.4 4.7-5.4"></path></svg></span><span class="nm">in_valid</span><span class="val">1</span></div>
+        <div class="as-row"><span class="pin" style="background:var(--ok)"></span><span class="ic" style="color:var(--text-2)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="m8.4 12.3 2.4 2.4 4.7-5.4"></path></svg></span><span class="nm">in_ready</span><span class="val">0</span></div>
+        <div class="as-row"><span class="pin" style="background:var(--pink)"></span><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2.5-7 4 14 2.5-7H21"></path></svg></span><span class="nm">in_data[7:0]</span><span class="vpill" style="--pc:var(--pink)">A3</span></div>
+
+        <div class="as-div"></div>
+
         <div class="as-row"><span class="pin" style="background:var(--bus)"></span><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h6l2 8 2-12h4"></path></svg></span><span class="nm">state[1:0]</span><span class="vpill" style="--pc:var(--bus)">BUSY</span></div>
-        <div class="as-row"><span class="pin" style="background:var(--warn)"></span><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2.5-7 4 14 2.5-7H21"></path></svg></span><span class="nm">fifo_level[3:0]</span><span class="val">2</span></div>
-        <div class="as-row"><span class="pin" style="background:#4FD2BD"></span><span class="ic" style="color:#4FD2BD"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5c2.2-2.6 4.4 1 6.5-1s4.3-3.6 6.5-1"></path><path d="M3 15c2.2-2.6 4.4 1 6.5-1s4.3-3.6 6.5-1"></path></svg></span><span class="nm">stall</span><span class="dtag">derived</span><span class="val">1</span></div>
+        <div class="as-row"><span class="pin" style="background:#4FD2BD"></span><span class="ic" style="color:#4FD2BD"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5c2.2-2.6 4.4 1 6.5-1s4.3-3.6 6.5-1"></path><path d="M3 15c2.2-2.6 4.4 1 6.5-1s4.3-3.6 6.5-1"></path></svg></span><span class="nm">stall</span><span class="dtag" style="--tc:#4FD2BD">muted</span><span class="val">1</span></div>
+        <div class="as-row dim"><span class="pin" style="background:var(--warn)"></span><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2.5-7 4 14 2.5-7H21"></path></svg></span><span class="nm">fifo_level[3:0]</span><span class="val">2</span></div>
       </div>
     </div>
     <div class="copy">
       <div class="sec-kicker">// ORGANIZATION</div>
-      <h2>Group signals the way you think.</h2>
-      <p>Bundle a handshake, a bus, or a valid/data pair into a group, then move, color or collapse them as one. Riptide can read the hierarchy and naming patterns to assign group colors automatically, so you spend less time housekeeping.</p>
+      <h2>Order the list the way you read it.</h2>
+      <p>The active-signal list is yours to shape. Recolor any row, give the buses the height they need, drag rows into the order the design actually runs in, and drop dividers between blocks so a handshake reads as a handshake. Rows you're done with dim out of the way instead of cluttering the view.</p>
       <ul class="feat-list">
-        <li><span class="pin" style="background:var(--clk)"></span><div><strong>Logical groups</strong><span>Group related signals, color them, collapse them together.</span></div></li>
-        <li><span class="pin" style="background:#4FD2BD"></span><div><strong>Auto group detection</strong><span>Hierarchy and name patterns seed groups and colors for you.</span></div></li>
+        <li><span class="pin" style="background:var(--bus)"></span><div><strong>Color, height, order</strong><span>Per-row color and height, drag to reorder — every choice persists with the trace.</span></div></li>
+        <li><span class="pin" style="background:var(--accent)"></span><div><strong>Dividers &amp; dimming</strong><span>Separate blocks with dividers; dim a row, or dim everything else, to focus on one story.</span></div></li>
+        <li><span class="pin" style="background:#4FD2BD"></span><div><strong>Mute on an enable</strong><span>Point a row at its 1-bit enable and it fades wherever the logic is gated off.</span></div></li>
+        <li><span class="pin" style="background:var(--clk)"></span><div><strong>Logical groups<span class="ast"> *</span></strong><span>Collapse a handshake or a valid/data pair into one row you move as a unit.</span></div></li>
       </ul>
+      <p class="soon-foot"><span class="ast">*</span> coming soon</p>
     </div>
   </div>
 </section>
@@ -250,7 +235,7 @@ permalink: /
       </ul>
     </div>
     <div class="codecard">
-      <div class="top"><span class="dot"></span> keysched.sidecar.json</div>
+      <div class="top"><span class="dot"></span> keysched.vcd.sidecar.json</div>
       <pre><span class="c-key">"view"</span>: {
   <span class="c-key">"time"</span>: { <span class="c-key">"start"</span>: <span class="c-num">88</span>, <span class="c-key">"end"</span>: <span class="c-num">132</span>, <span class="c-key">"cursor"</span>: <span class="c-num">104.5</span> },
   <span class="c-com">// keyed by path — opens against any run</span>
@@ -259,7 +244,7 @@ permalink: /
     { <span class="c-key">"path"</span>: <span class="c-clk">"top.dec.out_data"</span>, <span class="c-key">"radix"</span>: <span class="c-clk">"hex"</span> }
   ],
   <span class="c-key">"markers"</span>: [
-    { <span class="c-key">"t"</span>: <span class="c-num">104</span>, <span class="c-key">"name"</span>: <span class="c-ok">"assert failed"</span> }
+    { <span class="c-key">"name"</span>: <span class="c-ok">"handshake drops"</span>, <span class="c-key">"tick"</span>: <span class="c-num">104</span> }
   ]
 }</pre>
     </div>
@@ -267,7 +252,7 @@ permalink: /
 </section>
 
 <!-- CLOSING CTA -->
-<section class="closing">
+<section class="closing" id="download">
   <svg class="wave-bg" preserveAspectRatio="none" viewBox="0 0 1440 400">
     <g stroke="var(--accent)" stroke-width="1.4" fill="none" opacity=".5">
       <path d="M-20 200 H140 V150 H280 V200 H420 V150 H560 V200 H700 V150 H840 V200 H980 V150 H1120 V200 H1260 V150 H1460"></path>
@@ -277,9 +262,15 @@ permalink: /
     <h2>Land on the bug, first run.</h2>
     <p>Stop staring endlessly at green waves. Open it where it broke, with the right signals already on screen.</p>
     <div class="cta-row">
-      <a class="btn primary lg" href="https://github.com/coderkalyan/riptide/releases" target="_blank" rel="noopener">Download for Linux</a>
+      <a class="btn primary lg" data-dl href="{{ release.releasesUrl }}" target="_blank" rel="noopener">Download</a>
       <a class="btn lg" href="{{ site.repo }}">View on GitHub</a>
     </div>
+    <div class="dl-builds" data-dl-builds>
+      {%- for b in release.builds %}
+      <a class="dl-build" data-key="{{ b.key }}" href="{{ b.url }}" download="{{ b.name }}"><span class="b-os">{{ b.label }}</span><span class="b-det">{{ b.detail }}</span><span class="b-size">{{ b.size }}</span></a>
+      {%- endfor %}
+    </div>
+    <p class="cta-note dl-caveat">Alpha builds are unsigned — macOS needs <span class="mono">right-click ▸ Open</span> on first launch, Windows SmartScreen needs <span class="mono">More info ▸ Run anyway</span>. A WebGPU-capable GPU is required.</p>
   </div>
 </section>
 
@@ -291,10 +282,10 @@ permalink: /
     </a>
     <span class="sp"></span>
     <div class="links">
-      <a href="#">Docs</a>
-      <a href="#">Changelog</a>
+      <a href="{{ site.repo }}/tree/main/docs">Docs</a>
+      <a href="{{ site.repo }}/releases">Changelog</a>
       <a href="{{ site.repo }}">GitHub</a>
-      <a href="#">License</a>
+      <a href="{{ site.repo }}/blob/main/LICENSE">License</a>
     </div>
   </div>
 </footer>

@@ -1,7 +1,7 @@
 {
   "title": "Riptide — the RTL debugger",
   "tagline": "Debug your RTL without the headache.",
-  "description": "Riptide is a waveform debugger for the 21st century — GPU-accelerated rendering, advanced querying, derived signal expressions, and direct simulator control.",
+  "description": "Riptide is a waveform debugger for the 21st century — GPU-accelerated rendering, a clock-aware timeline, typed bus and enum decoding, and portable review sidecars. Free for Linux, macOS and Windows.",
   "url": "https://riptide.ksriram.dev",
-  "repo": "https://github.com/ksriram/riptide"
+  "repo": "https://github.com/coderkalyan/riptide"
 }

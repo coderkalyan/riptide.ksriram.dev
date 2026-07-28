@@ -15,5 +15,7 @@
   </head>
   <body>
     {{ content | safe }}
+    <script type="application/json" id="release-data">{{ release | dump | safe }}</script>
+    <script type="module" src="/assets/download.js"></script>
   </body>
 </html>
