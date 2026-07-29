@@ -1,27 +1,22 @@
 ---
 layout: layouts/base.njk
-title: Riptide — the RTL debugger
 permalink: /
 ---
 
 <header>
   <div class="wrap nav">
-    <a class="brand" href="#">
-      <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 14 L6 14 L6 7 L11 7 L11 17 L16 17 L16 11 L22 11"></path></svg>
+    <a class="brand" href="/">
+      {% include "components/mark.njk" %}
       Riptide
     </a>
-    {# <nav class="links">
-      <a class="disabled" aria-disabled="true" title="Coming soon">Docs</a>
-    </nav> #}
     <span class="sp"></span>
-    {# <a class="ghost disabled" aria-disabled="true" title="Coming soon">Changelog</a> #}
     <a class="btn primary" data-dl="short" href="{{ release.releasesUrl }}" target="_blank" rel="noopener">Download</a>
   </div>
 </header>
 
 <!-- HERO -->
 <section class="hero">
-  <svg class="wave-bg" preserveAspectRatio="none" viewBox="0 0 1440 600">
+  <svg class="wave-bg" preserveAspectRatio="none" viewBox="0 0 1440 600" aria-hidden="true">
     <g stroke="var(--clk)" stroke-width="1.4" fill="none" opacity=".22">
       <path d="M-20 120 H120 V70 H240 V120 H360 V70 H480 V120 H600 V70 H720 V120 H840 V70 H960 V120 H1080 V70 H1200 V120 H1320 V70 H1460"></path>
     </g>
@@ -45,12 +40,12 @@ permalink: /
         <p class="cta-note dl-note"><span data-dl-meta>{{ release.tag }}</span> — <a class="ln" href="#download">all platforms</a></p>
       </div>
       <div class="fit">
-        <div class="fit-label">DESIGNED TO FIT YOUR FLOW</div>
+        <div class="fit-label">// DESIGNED TO FIT YOUR FLOW</div>
         <div class="fit-row"><span class="k">File formats</span><span class="vv">VCD<span class="soon-grp">, FST, WLF, GHW<span class="ast"> *</span></span></span></div>
-        <div class="fit-row"><span class="k">Simulator dumps</span><span class="vv">Verilator, Icarus, xsim<span class="soon-grp">, live control<span class="ast"> *</span></span></span></div>
+        <div class="fit-row"><span class="k">Simulator dumps</span><span class="vv">Verilator, Icarus, XSim<span class="soon-grp">, live control<span class="ast"> *</span></span></span></div>
         <div class="fit-row"><span class="k">Frameworks</span><span class="vv dim">cocotb, UVM, SVUnit<span class="ast"> *</span></span></div>
         <div class="fit-row"><span class="k">Platforms</span><span class="vv">Linux, macOS, Windows</span></div>
-        <div class="fit-key"><span class="ast"> *</span> coming soon</div>
+        <div class="fit-key"><span class="ast">*</span> coming soon</div>
       </div>
     </div>
     <div class="shot-zone">
@@ -160,15 +155,15 @@ permalink: /
     <div class="copy">
       <div class="sec-kicker">// CONTROL</div>
       <h2>One surface for every simulator.<span class="ast"> *</span></h2>
-      <p>Beyond recorded waveforms, Riptide drives live simulation. It leans on <a class="ln" href="https://github.com/olofk/edalize">Edalize</a> to speak TCL to whatever backend you run — so the same run, step and poke work everywhere, instead of a different clunky UI per tool.</p>
+      <p>Beyond recorded waveforms, Riptide drives live simulation. It leans on <a class="ln" href="https://github.com/olofk/edalize">Edalize</a> to speak Tcl to whatever backend you run — so the same run, step and poke work everywhere, instead of a different clunky UI per tool.</p>
       <ul class="feat-list">
         <li><span class="pin" style="background:var(--accent)"></span><div><strong>Uniform control surface</strong><span>run · step · restart · poke — identical across backends.</span></div></li>
-        <li><span class="pin" style="background:var(--bus)"></span><div><strong>Powered by Edalize</strong><span>A battle-tested TCL abstraction over the EDA tool zoo.</span></div></li>
+        <li><span class="pin" style="background:var(--bus)"></span><div><strong>Powered by Edalize</strong><span>A battle-tested Tcl abstraction over the EDA tool zoo.</span></div></li>
         <li><span class="pin" style="background:var(--ok)"></span><div><strong>No vendor lock-in</strong><span>Swap the simulator under your testbench, keep your flow.</span></div></li>
       </ul>
       <p class="soon-foot"><span class="ast">*</span> coming soon</p>
     </div>
-    <div class="mock">
+    <div class="mock" aria-hidden="true">
       <div class="body">
         <div class="bk-head"><span>SIMULATOR</span><span class="sel">Verilator 5.0 ▾</span></div>
         <div class="bk-row active"><span class="d" style="background:var(--ok)"></span>Verilator<span class="sp"></span>connected</div>
@@ -176,7 +171,7 @@ permalink: /
         <div class="bk-row"><span class="d" style="background:var(--muted)"></span>GHDL<span class="sp"></span><span class="soon">soon</span></div>
         <div class="bk-row"><span class="d" style="background:var(--muted)"></span>Questa<span class="sp"></span><span class="soon">soon</span></div>
         <div class="bk-row"><span class="d" style="background:var(--muted)"></span>Vivado<span class="sp"></span><span class="soon">soon</span></div>
-        <div class="bk-tcl"><span class="p">&gt;</span> run -for 100ns<span class="note">one TCL surface, every backend</span></div>
+        <div class="bk-tcl"><span class="p">&gt;</span> run -for 100ns<span class="note">one Tcl surface, every backend</span></div>
       </div>
     </div>
   </div>
@@ -185,7 +180,7 @@ permalink: /
 <!-- GROUPING -->
 <section class="section" id="grouping">
   <div class="wrap split">
-    <div class="window plain as-card">
+    <div class="window plain as-card" aria-hidden="true">
       <div class="aslist">
         <div class="as-head">NAME<span class="vh">VALUE</span></div>
 
@@ -253,7 +248,7 @@ permalink: /
 
 <!-- CLOSING CTA -->
 <section class="closing" id="download">
-  <svg class="wave-bg" preserveAspectRatio="none" viewBox="0 0 1440 400">
+  <svg class="wave-bg" preserveAspectRatio="none" viewBox="0 0 1440 400" aria-hidden="true">
     <g stroke="var(--accent)" stroke-width="1.4" fill="none" opacity=".5">
       <path d="M-20 200 H140 V150 H280 V200 H420 V150 H560 V200 H700 V150 H840 V200 H980 V150 H1120 V200 H1260 V150 H1460"></path>
     </g>
@@ -270,14 +265,14 @@ permalink: /
       <a class="dl-build" data-key="{{ b.key }}" href="{{ b.url }}" download="{{ b.name }}"><span class="b-os">{{ b.label }}</span><span class="b-det">{{ b.detail }}</span><span class="b-size">{{ b.size }}</span></a>
       {%- endfor %}
     </div>
-    <p class="cta-note dl-caveat">Alpha builds are unsigned — macOS needs <span class="mono">right-click ▸ Open</span> on first launch, Windows SmartScreen needs <span class="mono">More info ▸ Run anyway</span>. A WebGPU-capable GPU is required.</p>
+    <p class="cta-note dl-caveat">Alpha builds are unsigned — macOS needs <span class="mono">right-click ▸ Open</span> on first launch; Windows SmartScreen needs <span class="mono">More info ▸ Run anyway</span>.</p>
   </div>
 </section>
 
 <footer>
   <div class="wrap foot">
-    <a class="brand" href="#">
-      <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;"><path d="M2 14 L6 14 L6 7 L11 7 L11 17 L16 17 L16 11 L22 11"></path></svg>
+    <a class="brand" href="/">
+      {% include "components/mark.njk" %}
       Riptide
     </a>
     <span class="sp"></span>

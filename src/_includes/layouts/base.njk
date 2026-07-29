@@ -5,9 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ title or site.title }}</title>
     <meta name="description" content="{{ description or site.description }}" />
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+
+    {# One square-wave mark everywhere: /assets/favicon.svg is the source the app
+       icon is generated from. The .ico carries 16/32/48 for older browsers, and
+       Safari ignores SVG for the home-screen slot, hence the PNG. #}
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+
+    <meta name="theme-color" content="#141517" />
+    <meta name="color-scheme" content="dark" />
+
+    <meta property="og:site_name" content="{{ site.name }}" />
     <meta property="og:title" content="{{ title or site.title }}" />
     <meta property="og:description" content="{{ description or site.description }}" />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="{{ site.url }}/assets/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="{{ site.title }}" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="{{ site.url }}/assets/og.png" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />

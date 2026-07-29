@@ -1,3 +1,8 @@
 [build]
 command = "npm run build"
 publish = "_site"
+
+[build.environment]
+# The build only runs eleventy; playwright is a devDependency used by the local
+# screenshot script, so skip its browser download on every deploy.
+PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"

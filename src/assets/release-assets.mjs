@@ -14,8 +14,8 @@ export const PLATFORMS = [
   { key: "linux-x64", os: "linux", arch: "x64", label: "Linux", detail: "AppImage", match: /\.AppImage$/i },
   { key: "mac-arm64", os: "mac", arch: "arm64", label: "macOS", detail: "Apple silicon", match: /arm64\.dmg$/i },
   { key: "mac-x64", os: "mac", arch: "x64", label: "macOS", detail: "Intel", match: /\.dmg$/i },
-  { key: "win-arm64", os: "win", arch: "arm64", label: "Windows", detail: "portable · arm64", match: /arm64.*\.exe$/i },
-  { key: "win-x64", os: "win", arch: "x64", label: "Windows", detail: "portable", match: /\.exe$/i },
+  { key: "win-arm64", os: "win", arch: "arm64", label: "Windows", detail: "Portable · arm64", match: /arm64.*\.exe$/i },
+  { key: "win-x64", os: "win", arch: "x64", label: "Windows", detail: "Portable", match: /\.exe$/i },
 ];
 
 // Display order for the "every build" list.

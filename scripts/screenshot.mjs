@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Launch the real Riptide Electron app and capture a screenshot
-// into src/assets/screenshot.png.
+// into src/assets/riptide-hero.png.
 //
 // Requires: ../riptide built (pnpm build in that repo) so dist/main, dist/renderer,
 // and dist/native are present. Vulkan/WebGPU flags are set by riptide's main process.
